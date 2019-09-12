@@ -1,3 +1,7 @@
+body{
+    background-color: #dddddd3b !important;
+}
+
 .Root{
     padding: 0px !important;
 }
@@ -6,6 +10,6 @@
     margin: 0 !important;
 }
 
-.RemovePaddingRight{
-    padding-right: 0 !important;
+.RemovePadding{
+    padding: 0 !important;
 }

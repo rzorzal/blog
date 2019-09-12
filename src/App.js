@@ -15,7 +15,6 @@ import GitHubValues from './contexts/values/github';
 import GitHubContext from './contexts/github';
 
 
-
 class App extends React.Component {
 
   state = {
@@ -24,13 +23,33 @@ class App extends React.Component {
     selectedIssue: undefined
   }
 
+  constructor(props) {
+    super(props);
+
+    this.selectIssue = this.selectIssue.bind(this);
+    this.onSelectedIssue = this.onSelectedIssue.bind(this);
+  }
+
   componentDidMount() {
     Promise.all([
       GitHubValues.getUser(),
       GitHubValues.getIssues()
-    ]).then(([user, issues]) => {
-      this.setState({ user, issues, selectedIssue: issues[0] });
+    ]).then(async ([user, issues]) => {
+      this.setState({
+        user,
+        issues,
+        selectedIssue: issues[0]
+      });
     });
+  }
+
+  async selectIssue(issueNumber) {
+    const issueSelected = await GitHubValues.getSingleIssue(issueNumber);
+    this.setState({ selectedIssue: issueSelected });
+  }
+
+  async onSelectedIssue(issue) {
+    this.selectedIssue(issue.number);
   }
 
   render() {
@@ -39,11 +58,11 @@ class App extends React.Component {
         <GitHubContext.Provider value={this.state}>
           <Container fluid className="Root">
             <Row>
+              <Col className="RemovePadding" xs="12" md="3" lg="3">
+                <Menu onSelectedIssue={this.onSelectedIssue} ></Menu>
+              </Col>
               <Col xs="12" md="9" lg="9">
                 <Content></Content>
-              </Col>
-              <Col className="RemovePaddingRigth" xs="12" md="3" lg="3">
-                <Menu></Menu>
               </Col>
             </Row>
           </Container>

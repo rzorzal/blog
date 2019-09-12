@@ -1,0 +1,25 @@
+.MenuContainer {
+    /* border-right: 1px solid #00000094; */
+    min-height:100vh; 
+    padding: 15px;
+    background-color: #2170b3d4;
+    color: white;
+    box-shadow: 2px 2px 15px black;
+}
+
+.MenuContainer > header {
+    height: 20vh;
+    text-align: center;
+}
+
+.MenuContainer > header > .Avatar {
+    height: 120px;
+    width: 120px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    border-style: solid;
+    margin: 10px auto;
+    box-shadow: 0px 0px 5px white;
+}

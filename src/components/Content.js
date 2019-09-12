@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 
 import GitHubContext from '../contexts/github';
 
+import moment from "moment";
 
 
 export default class Menu extends React.Component{
@@ -14,10 +15,14 @@ export default class Menu extends React.Component{
     render(){
         return (
             <div style={{minHeight: "100vh", overflowY: 'auto', padding: '5px'}}>
-                <div style={{borderBottom: "1px solid black", padding: "5px", marginBottom: '10px', backgroundColor: "#ddd"}}>
+                <div style={{borderBottom: "1px solid black", padding: "10px", marginBottom: '10px'}}>
                     <h1>{this.context.selectedIssue && this.context.selectedIssue.title}</h1>
                     <small>
-                        {this.context.selectedIssue && this.context.selectedIssue.created_at}
+                        {
+                            this.context.selectedIssue &&
+                            this.context.selectedIssue.created_at &&
+                            moment(this.context.selectedIssue.created_at).format('LL')
+                        }
                     </small>
                 </div>
                 <div style={{padding: "10px"}}>
