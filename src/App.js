@@ -25,7 +25,6 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("Test");
     this.selectIssue = this.selectIssue.bind(this);
     this.onSelectedIssue = this.onSelectedIssue.bind(this);
   }
