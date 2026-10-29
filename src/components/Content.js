@@ -4,6 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import GitHubContext from '../contexts/github';
+import { readingTimeLabel } from '../utils/readingTime';
 
 import moment from "moment";
 
@@ -23,6 +24,8 @@ export default class Menu extends React.Component{
                             this.context.selectedIssue.created_at &&
                             moment(this.context.selectedIssue.created_at).format('LL')
                         }
+                        {' · '}
+                        {readingTimeLabel(this.context.selectedIssue.body)}
                     </small>
                 </div>
                 <div style={{padding: "10px"}}>
